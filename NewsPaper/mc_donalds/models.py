@@ -11,7 +11,9 @@ class Product(models.Model):
 
 
 class Staff(models.Model):
-    pass
+    full_name = models.CharField(max_length=255)  # текст с ограничением
+    position = models.CharField(max_length=255)  # текст с ограничением
+    labor_contract = models.IntegerField()  # целое число
 
 
 class ProductOrder(models.Model):
