@@ -40,4 +40,6 @@ class Order(models.Model):
 
 
 class ProductOrder(models.Model):
-    pass
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)  # связь с товаром
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)  # связь с заказом
+    amount = models.IntegerField(default=1)  # количество товаров
