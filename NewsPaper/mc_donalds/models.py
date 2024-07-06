@@ -38,6 +38,8 @@ class Order(models.Model):
     complete = models.BooleanField(default=False)  # True, если заказ уже выполнен
     staff = models.ForeignKey(Staff, on_delete=models.CASCADE)  # связь с Сотрудником
 
+    products = models.ManyToManyField(Product, through = 'ProductOrder')  # связь "Товар"-"Заказ"
+
 
 class ProductOrder(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)  # связь с товаром
