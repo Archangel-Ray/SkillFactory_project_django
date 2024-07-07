@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.db import models
 
 
@@ -42,6 +44,11 @@ class Order(models.Model):
     staff = models.ForeignKey(Staff, on_delete=models.CASCADE)  # связь с Сотрудником
 
     products = models.ManyToManyField(Product, through = 'ProductOrder')  # связь "Товар"-"Заказ"
+
+    def finish_order(self):
+        self.time_out = datetime.now()
+        self.complete = True
+        self.save()
 
 
 class ProductOrder(models.Model):
