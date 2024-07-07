@@ -29,6 +29,9 @@ class Staff(models.Model):
                                 default=cashier)  # значение по умолчанию
     labor_contract = models.IntegerField()  # целое число
 
+    def get_last_name(self):
+        return self.full_name.split()[0]
+
 
 class Order(models.Model):
     time_in = models.DateTimeField(auto_now_add=True)  # дата и время оформления заказа
