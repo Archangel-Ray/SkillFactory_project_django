@@ -45,10 +45,18 @@ class Order(models.Model):
 
     products = models.ManyToManyField(Product, through = 'ProductOrder')  # связь "Товар"-"Заказ"
 
+    # завершение заказа
     def finish_order(self):
         self.time_out = datetime.now()
         self.complete = True
         self.save()
+
+    # время выполнения заказа
+    def get_duration(self):
+        if self.complete:  # если завершён, возвращаем разность начала и завершения
+            return (self.time_out - self.time_in).total_seconds() // 60
+        else:  # если ещё нет, то сколько времи прошло до этого момента
+            return (datetime.now() - self.time_in).total_seconds() // 60
 
 
 class ProductOrder(models.Model):
@@ -56,6 +64,7 @@ class ProductOrder(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)  # связь с заказом
     amount = models.IntegerField(default=1)  # количество товаров
 
-    def product_sum(self):  # общая стоимость
+    # общая стоимость
+    def product_sum(self):
         product_price = self.product.price
         return product_price * self.amount
