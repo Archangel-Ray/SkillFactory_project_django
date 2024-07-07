@@ -43,7 +43,7 @@ class Order(models.Model):
     complete = models.BooleanField(default=False)  # True, если заказ уже выполнен
     staff = models.ForeignKey(Staff, on_delete=models.CASCADE)  # связь с Сотрудником
 
-    products = models.ManyToManyField(Product, through = 'ProductOrder')  # связь "Товар"-"Заказ"
+    products = models.ManyToManyField(Product, through='ProductOrder')  # связь "Товар"-"Заказ"
 
     # завершение заказа
     def finish_order(self):
@@ -62,7 +62,18 @@ class Order(models.Model):
 class ProductOrder(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)  # связь с товаром
     order = models.ForeignKey(Order, on_delete=models.CASCADE)  # связь с заказом
-    amount = models.IntegerField(default=1)  # количество товаров
+    _amount = models.IntegerField(default=1, db_column='amount')  # количество товаров
+
+    # возвращает общее количество
+    @property
+    def amount(self):
+        return self._amount
+
+    # проверка на отрицательное значение
+    @amount.setter
+    def amount(self, value):
+        self._amount = int(value) if value >= 0 else 0
+        self.save()
 
     # общая стоимость
     def product_sum(self):
