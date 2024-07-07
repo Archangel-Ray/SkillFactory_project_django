@@ -41,7 +41,7 @@ class Order(models.Model):
     cost = models.FloatField(default=0.0)  # общая стоимость заказа
     pickup = models.BooleanField(default=False)  # True, если заказ нужно собрать для самовывоза
     complete = models.BooleanField(default=False)  # True, если заказ уже выполнен
-    staff = models.ForeignKey(Staff, on_delete=models.CASCADE)  # связь с Сотрудником
+    staff = models.ForeignKey(Staff, on_delete=models.CASCADE, related_name='orders')  # связь с Сотрудником
 
     products = models.ManyToManyField(Product, through='ProductOrder')  # связь "Товар"-"Заказ"
 
@@ -54,9 +54,9 @@ class Order(models.Model):
     # время выполнения заказа
     def get_duration(self):
         if self.complete:  # если завершён, возвращаем разность начала и завершения
-            return (self.time_out - self.time_in).total_seconds() // 60
+            return (self.time_out - self.time_in).total_seconds()
         else:  # если ещё нет, то сколько времи прошло до этого момента
-            return (datetime.now() - self.time_in).total_seconds() // 60
+            return (datetime.now() - self.time_in).total_seconds()
 
 
 class ProductOrder(models.Model):
