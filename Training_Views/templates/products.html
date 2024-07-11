@@ -36,7 +36,7 @@
         <!-- Добавим специальный фильтр truncatechars,
         чтобы ограничить количество символов до 15.
         Все остальные символы превратятся в многоточие. -->
-        <td>{{ product.description|truncatechars:15 }}</td>
+        <td>{{ product.description|truncatewords:2 }}</td>
         <td>{{ product.category.name }}</td>
         <td>{{ product.price }}</td>
         <td>{{ product.quantity }}</td>
