@@ -1,0 +1,13 @@
+{% extends 'flatpages/default.html' %}  <!--подключаем шаблон-->
+
+{% block title %}Редактирование товара{% endblock %}
+
+{% block content %}  <!--открываем блок контекста-->
+<h1>Товар</h1>
+<hr>
+<from action="" method="post">  <!--объявление формы-->
+    {% csrf_token %}  <!--какой-то ключь (без комментариев)-->
+    {{ form.as_p }}  <!--получение формы-->
+    <input type="submit" value="Save"/>  <!--кнопка отправки формы-->
+</from>
+{% endblock %}  <!--закрываем блок контекста-->
