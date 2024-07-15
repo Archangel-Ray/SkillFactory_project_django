@@ -6,4 +6,10 @@ from .models import Product
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = '__all__'  # редактировать все поля
+        fields = [  # перечисление полей которые будут отображаться для редактирования
+            'name',
+            'description',
+            'quantity',
+            'category',
+            'price',
+        ]
