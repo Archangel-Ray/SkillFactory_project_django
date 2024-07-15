@@ -1,12 +1,12 @@
 # from datetime import datetime
-
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 # Импортируем класс, который говорит нам о том,
 # что в этом представлении мы будем выводить список объектов из БД
 from django.views.generic import ListView, DetailView
 
-from simpleapp.forms import ProductForm
 from simpleapp.filters import ProductFilter
+from simpleapp.forms import ProductForm
 from .models import Product
 
 
@@ -68,5 +68,12 @@ class ProductDetail(DetailView):
 
 
 def create_product(request):
-    form = ProductForm()
+    form = ProductForm()  # пустая форма
+
+    if request.method == 'POST':  # проверка типа запроса
+        form = ProductForm(request.POST)  # отправляем запрос в форму
+        if form.is_valid():  # проверка запроса на ошибки
+            form.save()  # сохранение в базе
+            return HttpResponseRedirect('/products/')
+
     return render(request, 'product_edit.html', {'form': form})
