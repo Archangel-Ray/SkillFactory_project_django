@@ -1,9 +1,11 @@
 # from datetime import datetime
 
+from django.shortcuts import render
 # Импортируем класс, который говорит нам о том,
 # что в этом представлении мы будем выводить список объектов из БД
 from django.views.generic import ListView, DetailView
 
+from simpleapp.forms import ProductForm
 from simpleapp.filters import ProductFilter
 from .models import Product
 
@@ -63,3 +65,8 @@ class ProductDetail(DetailView):
     template_name = 'product.html'
     # Название объекта, в котором будет выбранный пользователем продукт
     context_object_name = 'product'
+
+
+def create_product(request):
+    form = ProductForm()
+    return render(request, 'product_edit.html', {'form': form})
