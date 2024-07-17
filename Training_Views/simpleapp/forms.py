@@ -17,7 +17,7 @@ class ProductForm(forms.ModelForm):
             'price',
         ]
 
-    # проверка полей
+    # проверка всех полей
     def clean(self):
         cleaned_data = super().clean()
         name = cleaned_data.get("name")
@@ -29,3 +29,12 @@ class ProductForm(forms.ModelForm):
             )
 
         return cleaned_data
+
+    # отдельная проверка
+    def clean_name(self):
+        name = self.cleaned_data["name"]
+        if name[0].islower():
+            raise ValidationError(
+                "Название должно начинаться с заглавной буквы."
+            )
+        return name
