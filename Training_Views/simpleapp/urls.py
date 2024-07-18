@@ -1,7 +1,7 @@
 from django.urls import path
 
 # Импортируем созданное нами представление
-from .views import ProductsList, ProductDetail, ProductCreate
+from .views import ProductsList, ProductDetail, ProductCreate, ProductUpdate
 
 urlpatterns = [
     # path — означает путь.
@@ -16,4 +16,5 @@ urlpatterns = [
     path('<int:pk>', ProductDetail.as_view(), name='product_detail'),
     # ссылка на представление редактирования продукта
     path('create/', ProductCreate.as_view(), name='product_create'),
+    path('<int:pk>/update/', ProductUpdate.as_view(), name='product_update'),
 ]
