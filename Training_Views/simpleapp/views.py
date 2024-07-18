@@ -1,9 +1,7 @@
 # from datetime import datetime
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
 # Импортируем класс, который говорит нам о том,
 # что в этом представлении мы будем выводить список объектов из БД
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView
 
 from simpleapp.filters import ProductFilter
 from simpleapp.forms import ProductForm
@@ -36,7 +34,7 @@ class ProductsList(ListView):
     #     # чтобы на её примере рассмотреть работу ещё одного фильтра.
     #     context['next_sale'] = None
     #     return context
-    paginate_by = 2  # вот так мы можем указать количество записей на странице
+    paginate_by = 10  # вот так мы можем указать количество записей на странице
 
     # Переопределяем функцию получения списка товаров
     def get_queryset(self):
@@ -67,13 +65,23 @@ class ProductDetail(DetailView):
     context_object_name = 'product'
 
 
-def create_product(request):
-    form = ProductForm()  # пустая форма
+# вместо функции теперь будет класс
+# def create_product(request):
+#     form = ProductForm()  # пустая форма
+#
+#     if request.method == 'POST':  # проверка типа запроса
+#         form = ProductForm(request.POST)  # отправляем запрос в форму
+#         if form.is_valid():  # проверка запроса на ошибки
+#             form.save()  # сохранение в базе
+#             return HttpResponseRedirect('/products/')
+#
+#     return render(request, 'product_edit.html', {'form': form})
 
-    if request.method == 'POST':  # проверка типа запроса
-        form = ProductForm(request.POST)  # отправляем запрос в форму
-        if form.is_valid():  # проверка запроса на ошибки
-            form.save()  # сохранение в базе
-            return HttpResponseRedirect('/products/')
-
-    return render(request, 'product_edit.html', {'form': form})
+# Добавляем новое представление для создания товаров.
+class ProductCreate(CreateView):
+    # Указываем нашу разработанную форму
+    form_class = ProductForm
+    # модель товаров
+    model = Product
+    # и новый шаблон, в котором используется форма.
+    template_name = 'product_edit.html'
