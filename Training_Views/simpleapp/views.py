@@ -1,7 +1,8 @@
 # from datetime import datetime
 # Импортируем класс, который говорит нам о том,
 # что в этом представлении мы будем выводить список объектов из БД
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from simpleapp.filters import ProductFilter
 from simpleapp.forms import ProductForm
@@ -92,3 +93,10 @@ class ProductUpdate(UpdateView):
     form_class = ProductForm
     model = Product
     template_name = 'product_edit.html'
+
+
+# Представление удаляющее товар.
+class ProductDelete(DeleteView):
+    model = Product
+    template_name = 'product_delete.html'  # шаблон удаления товара
+    success_url = reverse_lazy('product_list')  # перенаправление после успешного удаления
