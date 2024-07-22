@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 
-from simple_signup.sign.views import BaseRegisterView
+from .views import BaseRegisterView
 
 urlpatterns = [
     # идентификация и аутентификация
