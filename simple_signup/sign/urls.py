@@ -1,6 +1,8 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 
+from simple_signup.sign.views import BaseRegisterView
+
 urlpatterns = [
     # идентификация и аутентификация
     path('login/',
@@ -10,4 +12,8 @@ urlpatterns = [
     path('logout/',
          LogoutView.as_view(template_name='sign/logout.html'),
          name='logout'),
+    # регистрация
+    path('signup/',
+         BaseRegisterView.as_view(template_name = 'sign/signup.html'),
+         name='signup'),
 ]
