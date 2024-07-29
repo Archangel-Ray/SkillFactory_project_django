@@ -54,6 +54,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    # добавление учётной записи в базу:
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 SITE_ID = 1  # номер сайта (если их несколько)
