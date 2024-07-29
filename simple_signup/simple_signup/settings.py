@@ -129,7 +129,7 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = 'sign/login/'  # ссылка на форму аутентификации
+LOGIN_URL = '/accounts/login/'  # ссылка на форму аутентификации
 LOGIN_REDIRECT_URL = '/'  # ссылка после аутентификации
 
 AUTHENTICATION_BACKENDS = [
