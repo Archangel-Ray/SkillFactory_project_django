@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'django-insecure-zce95i1wn7v=1&i*l6ln14_y2=g0!q+dhbwfcgt+9#+^*=jn)(
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -58,7 +56,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # второй вариант на память
-        'DIRS': [BASE_DIR/'templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         # 'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -74,7 +72,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'simple_signup.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -84,7 +81,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -104,7 +100,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -118,7 +113,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -130,4 +124,21 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'sign/login/'  # ссылка на форму аутентификации
-LOGIN_REDIRECT_URL = '/'   # ссылка после аутентификации
+LOGIN_REDIRECT_URL = '/'  # ссылка после аутентификации
+
+AUTHENTICATION_BACKENDS = [
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+"""
+объяснение от СкиллФактори:
+Далее нам необходимо добавить бэкенды аутентификации: встроенный бэкенд Django, реализующий 
+аутентификацию по username, а также бэкенд аутентификации, предоставленный пакетом allauth. 
+Грубо говоря, нам нужно «включить» аутентификацию как по username, так и специфичную 
+по email или сервис-провайдеру.
+всё стало понятно? мне нет :-( очень похоже на такое: "там обязательно нечто делается, 
+потому-что оно должно делаться, по этому мы это делаем"
+"""
