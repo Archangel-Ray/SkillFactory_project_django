@@ -56,6 +56,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+SITE_ID = 1  # номер сайта (если их несколько)
 ROOT_URLCONF = 'simple_signup.urls'
 
 TEMPLATES = [
