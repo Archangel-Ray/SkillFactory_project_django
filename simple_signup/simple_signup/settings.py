@@ -36,6 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # подключение провайдеров для авторизации:
+    'allauth.socialaccount.providers.google',
+
     'sign',
     'protect',
 ]
