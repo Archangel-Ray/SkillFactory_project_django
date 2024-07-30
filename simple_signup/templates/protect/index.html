@@ -8,8 +8,12 @@
 <!--<button> <a href="sign/logout/">Выйти</a> </button>-->
 
 <!--исправляем с помощью post запроса-->
-<form action="{% url 'logout' %}" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Выйти">
-</form>
+<!--<form action="{% url 'logout' %}" method="post">-->
+<!--    {% csrf_token %}-->
+<!--    <input type="submit" value="Выйти">-->
+<!--</form>-->
+
+
+<!--подключение пакета allauth-->
+<button> <a href="{% url 'account_logout' %}">Выйти</a> </button>
 {% endblock %}
