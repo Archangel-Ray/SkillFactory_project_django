@@ -160,3 +160,4 @@ ACCOUNT_UNIQUE_EMAIL = True  # поле почты уникально
 ACCOUNT_USERNAME_REQUIRED = False  # выключает обязательное заполнение
 ACCOUNT_AUTHENTICATION_METHOD = 'email'  # метод аутентификации через поле почты
 ACCOUNT_EMAIL_VERIFICATION = 'none'  # нет проверки почты
+ACCOUNT_FORMS = {'signup': 'sign.models.BasicSignupForm'}  # передаёт модель группы приложению allauth
