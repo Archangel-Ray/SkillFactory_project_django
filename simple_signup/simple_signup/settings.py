@@ -152,3 +152,9 @@ AUTHENTICATION_BACKENDS = [
 всё стало понятно? мне нет :-( очень похоже на такое: "там обязательно нечто делается, 
 потому-что оно должно делаться, по этому мы это делаем"
 """
+
+ACCOUNT_EMAIL_REQUIRED = True  # почта обязательна
+ACCOUNT_UNIQUE_EMAIL = True  # поле почты уникально
+ACCOUNT_USERNAME_REQUIRED = False  # выключает обязательное заполнение
+ACCOUNT_AUTHENTICATION_METHOD = 'email'  # метод аутентификации через поле почты
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # нет проверки почты
