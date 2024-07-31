@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 
-from .views import BaseRegisterView
+from .views import BaseRegisterView, upgrade_me
 
 urlpatterns = [
     # идентификация и аутентификация
@@ -14,6 +14,7 @@ urlpatterns = [
          name='logout'),
     # регистрация
     path('signup/',
-         BaseRegisterView.as_view(template_name = 'sign/signup.html'),
+         BaseRegisterView.as_view(template_name='sign/signup.html'),
          name='signup'),
+    path('upgrade/', upgrade_me, name='upgrade'),
 ]
