@@ -15,7 +15,6 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 
@@ -26,7 +25,6 @@ SECRET_KEY = 'django-insecure-37tav6v#pjy5_g)z#_+4i#i_(&!2_ij%)&yyjal7hg2j8szfvr
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -70,7 +68,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
@@ -80,7 +77,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/dev/ref/settings/#auth-password-validators
@@ -100,7 +96,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
 
@@ -112,7 +107,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 
@@ -122,3 +116,19 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_HOST = 'smtp.yandex.ru'  # адрес сервера Яндекс-почты для всех один и тот же
+EMAIL_PORT = 465  # порт smtp сервера тоже одинаковый
+
+# ваше имя пользователя, например, если ваша почта user@yandex.ru, то сюда надо писать user,
+# иными словами, это всё то что идёт до собаки
+EMAIL_HOST_USER = open('G:/Python_projects/all_secret_codes_are_here/Yandex email/login.txt').read()
+# пароль от почты
+EMAIL_HOST_PASSWORD = open('G:/Python_projects/all_secret_codes_are_here/Yandex email/password.txt').read()
+
+# Яндекс использует ssl, подробнее о том, что это, почитайте в
+# дополнительных источниках, но включать его здесь обязательно
+EMAIL_USE_SSL = True
+
+# было у Олега в скринкасте
+DEFAULT_FROM_EMAIL = open('G:/Python_projects/all_secret_codes_are_here/Yandex email/email.txt').read()
