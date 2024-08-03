@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import render, reverse, redirect
 from django.views import View
 from django.core.mail import EmailMultiAlternatives  # импортируем класс для создание объекта письма с html
@@ -31,8 +32,8 @@ class AppointmentView(View):
         msg = EmailMultiAlternatives(
             subject=f'{appointment.client_name} {appointment.date.strftime("%Y-%M-%d")}',
             body=appointment.message,  # это то же, что и message
-            from_email='peterbadson@yandex.ru',
-            to=['skavik46111@gmail.com'],  # это то же, что и recipients_list
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to=['skavik46111@gmail.com', settings.DEFAULT_FROM_EMAIL],  # это то же, что и recipients_list
         )
         msg.attach_alternative(html_content, "text/html")  # добавляем html
         msg.send()  # отсылаем
