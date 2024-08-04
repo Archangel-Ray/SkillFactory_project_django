@@ -136,5 +136,5 @@ EMAIL_HOST_PASSWORD = open('G:/Python_projects/all_secret_codes_are_here/Yandex 
 # дополнительных источниках, но включать его здесь обязательно
 EMAIL_USE_SSL = True
 
-# было у Олега в скринкасте
+# эл.почта с которой будет производиться отправка
 DEFAULT_FROM_EMAIL = open('G:/Python_projects/all_secret_codes_are_here/Yandex email/email.txt').read()
