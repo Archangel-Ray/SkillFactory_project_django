@@ -62,6 +62,19 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",
 ]
 
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        # Для каждого провайдера на основе OAuth либо добавьте ``SocialApp``
+        # (приложение ``sociaaccount``), содержащее требуемый клиент
+        # учетные данные или перечислите их здесь:
+        'APP': {
+            'client_id': '123',
+            'secret': '456',
+            'key': ''
+        }
+    }
+}
+
 ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
