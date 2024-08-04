@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.shortcuts import render, reverse, redirect
 from django.views import View
-from django.core.mail import EmailMultiAlternatives  # импортируем класс для создание объекта письма с html
+from django.core.mail import EmailMultiAlternatives  # импортируем класс для создания объекта письма с html
 from datetime import datetime
 
 from django.template.loader import render_to_string  # импортируем функцию, которая срендерит наш html в текст
@@ -30,10 +30,10 @@ class AppointmentView(View):
 
         # в конструкторе уже знакомые нам параметры, да? Называются правда немного по-другому, но суть та же.
         msg = EmailMultiAlternatives(
-            subject=f'{appointment.client_name} {appointment.date.strftime("%Y-%M-%d")}',
+            subject=f'{appointment.client_name} {appointment.date.strftime("%Y-%m-%d")}',
             body=appointment.message,  # это то же, что и message
             from_email=settings.DEFAULT_FROM_EMAIL,
-            to=['skavik46111@gmail.com', settings.DEFAULT_FROM_EMAIL],  # это то же, что и recipients_list
+            to=[settings.DEFAULT_FROM_EMAIL],  # это то же, что и recipients_list
         )
         msg.attach_alternative(html_content, "text/html")  # добавляем html
         msg.send()  # отсылаем
