@@ -140,3 +140,14 @@ EMAIL_USE_SSL = True
 
 # эл.почта с которой будет производиться отправка
 DEFAULT_FROM_EMAIL = open('G:/Python_projects/all_secret_codes_are_here/Yandex email/email.txt').read()
+
+# изменяем настройки так, как это было в документации
+# https://docs.allauth.org/en/latest/installation/quickstart.html#post-installation
+
+AUTHENTICATION_BACKENDS = [
+    # Необходимо войти в систему по имени пользователя в администраторе Django, независимо от `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # специальные методы аутентификации `allauth`, такие как вход по электронной почте.
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
