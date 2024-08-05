@@ -38,6 +38,7 @@ INSTALLED_APPS = [
 
     'appointment.apps.AppointmentConfig',
     'django.contrib.sites',
+    'django_apscheduler',
 
     'allauth',
     'allauth.account',
@@ -167,3 +168,11 @@ AUTHENTICATION_BACKENDS = [
     # специальные методы аутентификации `allauth`, такие как вход по электронной почте.
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+# настройка для django-apscheduler
+# формат даты, которую будет воспринимать наш задачник (вспоминаем модуль по фильтрам)
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+
+# настройка для django-apscheduler
+# если задача не выполняется за 25 секунд, то она автоматически снимается, можете поставить время побольше,
+# но как правило, это сильно бьёт по производительности сервера
+APSCHEDULER_RUN_NOW_TIMEOUT = 25  # Seconds
