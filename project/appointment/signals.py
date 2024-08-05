@@ -1,6 +1,6 @@
 from django.conf import settings
-from django.core.mail import EmailMultiAlternatives  # импортируем класс для создания объекта письма с html
-from django.db.models.signals import post_save
+from django.core.mail import EmailMultiAlternatives, send_mail  # импортируем класс для создания объекта письма с html
+from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from django.template.loader import render_to_string  # импортируем функцию, которая срендерит наш html в текст
 
@@ -36,3 +36,13 @@ def notify_managers_appointment(sender, instance, created, **kwargs):
     )
     msg.attach_alternative(html_content, "text/html")  # добавляем html
     msg.send()  # отсылаем
+
+
+@receiver(post_delete, sender=Appointment)
+def notify_managers_appointment_canceled(sender, instance, **kwargs):
+    send_mail(
+        subject=f'{instance.client_name}, Встреча на {instance.date.strftime("%Y-%M-%d")} была отменена.',
+        message=instance.message,
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        recipient_list=[settings.DEFAULT_FROM_EMAIL],
+    )
