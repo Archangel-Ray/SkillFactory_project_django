@@ -9,6 +9,7 @@ from datetime import datetime
 from django.template.loader import render_to_string  # импортируем функцию, которая срендерит наш html в текст
 from .models import Appointment
 
+
 @receiver(post_save, sender=Appointment)
 def notify_managers_appointment(sender, instance, created, **kwargs):
     """
@@ -16,6 +17,10 @@ def notify_managers_appointment(sender, instance, created, **kwargs):
     instance: созданный объект модели
     created: есть в базе или нет
     """
+    if created:
+        new_subject = f'{instance.client_name} {instance.date.strftime("%Y-%m-%d")}',
+    else:
+        new_subject = f'Запись {instance.client_name} от {instance.date.strftime("%Y-%m-%d")} была изменена',
 
     # получаем наш html
     html_content = render_to_string(
@@ -27,7 +32,7 @@ def notify_managers_appointment(sender, instance, created, **kwargs):
 
     # в конструкторе уже знакомые нам параметры, да? Называются правда немного по-другому, но суть та же.
     msg = EmailMultiAlternatives(
-        subject=f'{instance.client_name} {instance.date.strftime("%Y-%m-%d")}',
+        subject=new_subject,
         body=instance.message,  # это то же, что и message
         from_email=settings.DEFAULT_FROM_EMAIL,
         to=[settings.DEFAULT_FROM_EMAIL],  # это то же, что и recipients_list
