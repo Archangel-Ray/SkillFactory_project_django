@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.db.models.signals import post_save
 from django.shortcuts import render, reverse, redirect
 from django.views import View
 from django.core.mail import EmailMultiAlternatives  # импортируем класс для создания объекта письма с html
