@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db.models.signals import post_save
+from django.dispatch import receiver
 from django.shortcuts import render, reverse, redirect
 from django.views import View
 from django.core.mail import EmailMultiAlternatives  # импортируем класс для создания объекта письма с html
@@ -8,7 +9,7 @@ from datetime import datetime
 from django.template.loader import render_to_string  # импортируем функцию, которая срендерит наш html в текст
 from .models import Appointment
 
-
+@receiver(post_save, sender=Appointment)
 def notify_managers_appointment(sender, instance, created, **kwargs):
     """
     sender: модель
@@ -33,9 +34,6 @@ def notify_managers_appointment(sender, instance, created, **kwargs):
     )
     msg.attach_alternative(html_content, "text/html")  # добавляем html
     msg.send()  # отсылаем
-
-
-post_save.connect(notify_managers_appointment, sender=Appointment)
 
 
 class AppointmentView(View):
