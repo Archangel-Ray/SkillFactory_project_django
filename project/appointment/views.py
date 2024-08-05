@@ -35,6 +35,9 @@ def notify_managers_appointment(sender, instance, created, **kwargs):
     msg.send()  # отсылаем
 
 
+post_save.connect(notify_managers_appointment, sender=Appointment)
+
+
 class AppointmentView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'make_appointment.html', {})
