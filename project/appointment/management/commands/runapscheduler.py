@@ -33,7 +33,7 @@ logger = logging.getLogger(__name__)
 
 def my_job():
     # Your job processing logic here...
-    pass
+    print('СкиллФактори красавцы!')
 
 
 # Декоратор `close_old_connections` гарантирует, что соединения с базой данных, которые стали непригодны
