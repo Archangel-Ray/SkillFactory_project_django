@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'news',
-    'accounts',
-    'mc_donalds',
+
+    'news',         # Пустое приложение. Создано в качестве примера
+    'accounts',     # Пустое приложение. Создано по заданию для проверки понимания создания приложений
+    'mc_donalds',   # Должно было быть создано отдельное приложение с именем "models_tutor".
+                    # В этом приложении демонстрировалось создание моделей. Модуль D5.6
 ]
 
 MIDDLEWARE = [
