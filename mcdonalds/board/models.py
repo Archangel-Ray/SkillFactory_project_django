@@ -6,7 +6,7 @@ class Product(models.Model):
     price = models.FloatField(default=0.0)
 
     def __str__(self):
-        return self.name + "/" + str(self.price)
+        return f'{self.name}/{str(self.price)}'
 
 
 class Order(models.Model):
