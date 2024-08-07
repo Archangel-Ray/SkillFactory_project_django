@@ -32,4 +32,3 @@ def take_order(request, oid):
     order.time_out = datetime.now()
     order.save()
     return redirect('/')
-
