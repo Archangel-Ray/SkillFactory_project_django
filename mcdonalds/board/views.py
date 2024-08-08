@@ -2,13 +2,14 @@ from django.http import HttpResponse
 from django.shortcuts import redirect
 from django.views import View
 from django.views.generic import TemplateView, CreateView
-from .tasks import hello  #, complete_order
+from .tasks import hello, printer  # , complete_order
 from .models import Order
 from datetime import datetime
 
 
 class IndexView(View):  #TemplateView):
     def get(self, request):
+        printer.delay(10)
         hello.delay()
         return HttpResponse('Ещё один Халло! (но этого уже не посылали)')
     # template_name = "board/index.html"
