@@ -4,12 +4,13 @@ from django.views import View
 from django.views.generic import TemplateView, CreateView
 from .tasks import hello, printer  # , complete_order
 from .models import Order
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 class IndexView(View):  # TemplateView):
     def get(self, request):
-        printer.apply_async([10], countdown=5)
+        printer.apply_async([10],
+                            eta=datetime.now() + timedelta(seconds=5))
         hello.delay()
         return HttpResponse('Ещё один Халло! (но этого уже не посылали)')
     # template_name = "board/index.html"
