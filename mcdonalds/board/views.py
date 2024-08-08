@@ -7,9 +7,9 @@ from .models import Order
 from datetime import datetime
 
 
-class IndexView(View):  #TemplateView):
+class IndexView(View):  # TemplateView):
     def get(self, request):
-        printer.delay(10)
+        printer.apply_async([10], countdown=5)
         hello.delay()
         return HttpResponse('Ещё один Халло! (но этого уже не посылали)')
     # template_name = "board/index.html"
