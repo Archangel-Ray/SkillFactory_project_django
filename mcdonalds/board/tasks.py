@@ -20,8 +20,8 @@ $ celery -A mcdonalds worker -l INFO --pool=solo
 --concurrency=10  - количество процессов
 -B                - запуска периодические задачи
 
-Для запуска периодических задач на Windows запустите в разных окнах терминала:
-$ celery -A PROJECT worker -l INFO
+запуск периодических задач на Windows в разных окнах терминала:
+$ celery -A mcdonalds worker -l INFO --pool=solo
 и
-$ celery -A PROJECT beat -l INFO
+$ celery -A mcdonalds beat -l INFO
 """
