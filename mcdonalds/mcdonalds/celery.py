@@ -24,7 +24,7 @@ app.conf.beat_schedule = {
 app.conf.beat_schedule = {
     'clear_board_every_minute': {
         'task': 'board.tasks.clear_old',
-        'schedule': crontab(minute='*/3'),  # каждые три минуты
+        'schedule': crontab(),  # каждую минуту
     },
 }
 
