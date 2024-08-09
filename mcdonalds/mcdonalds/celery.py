@@ -1,5 +1,6 @@
 import os
 from celery import Celery
+from celery.schedules import crontab
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mcdonalds.settings')
 # связываем настройки Django с настройками Celery через переменную окружения
@@ -18,6 +19,15 @@ app.conf.beat_schedule = {
         'args': (5,),  # аргументы для выполняемой задачи
     },
 }
+
+# app.conf.beat_schedule = {
+#     'запустит в понедельник в восемь утра': {
+#         'task': 'задача',
+#         'schedule': crontab(hour=8, minute=0, day_of_week='monday'),
+#         'args': (args),
+#     },
+# }
+# https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html#periodic-tasks
 
 """
 запуск периодических задач на Windows в разных окнах терминала:
