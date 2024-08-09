@@ -20,6 +20,18 @@ app.conf.beat_schedule = {
     },
 }
 
+# запуск очистки
+app.conf.beat_schedule = {
+    'clear_board_every_minute': {
+        'task': 'board.tasks.clear_old',
+        'schedule': crontab(minute='*/3'),  # каждые три минуты
+    },
+}
+
+# таблица задания периодов
+# https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html#crontab-schedules
+
+# # пример
 # app.conf.beat_schedule = {
 #     'запустит в понедельник в восемь утра': {
 #         'task': 'задача',
@@ -27,7 +39,7 @@ app.conf.beat_schedule = {
 #         'args': (args),
 #     },
 # }
-# https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html#periodic-tasks
+# # https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html#periodic-tasks
 
 """
 запуск периодических задач на Windows в разных окнах терминала:

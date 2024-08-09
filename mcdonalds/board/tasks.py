@@ -1,4 +1,5 @@
 import time
+from datetime import datetime, timedelta
 
 from celery import shared_task
 
@@ -10,6 +11,15 @@ def complete_order(oid):
     order = Order.objects.get(pk=oid)
     order.complete = True
     order.save()
+
+
+@shared_task
+def clear_old():
+    """
+    Очистка от старых заказов
+    """
+    old_orders = Order.objects.all().exclude(time_in__gt=datetime.now() - timedelta(minutes=5))
+    old_orders.delete()
 
 
 @shared_task
