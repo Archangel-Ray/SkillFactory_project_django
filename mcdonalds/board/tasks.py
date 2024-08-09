@@ -1,5 +1,4 @@
 from celery import shared_task
-import time
 
 from .models import Order
 
@@ -10,5 +9,19 @@ def complete_order(oid):
     order.complete = True
     order.save()
 
-# запуск задач
-# celery -A mcdonalds worker -l INFO --pool=solo
+
+"""
+# Инициализация ВОРКЕРА
+$ celery -A mcdonalds worker -l INFO --pool=solo
+Селери приложить макдоналдса к воркеру, выводить в консоль: информацию
+(в отделённых воспринимать независимо в одном потоке - это для Винды)
+-A (application)  - приложение, дальше имя приложения
+-l значение: INFO - что выводить в консоль
+--concurrency=10  - количество процессов
+-B                - запуска периодические задачи
+
+Для запуска периодических задач на Windows запустите в разных окнах терминала:
+$ celery -A PROJECT worker -l INFO
+и
+$ celery -A PROJECT beat -l INFO
+"""
