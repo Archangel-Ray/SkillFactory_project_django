@@ -10,3 +10,11 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 # настройки в общем конфигурационном файле settings.py. Он их будет искать по шаблону «CELERY_***».
 
 app.autodiscover_tasks()  # автоматически искать задания в файлах tasks.py каждого приложения проекта
+
+app.conf.beat_schedule = {
+    'print_every_5_seconds': {  # периодическая задача
+        'task': 'board.tasks.printer',  # задача которая должна выполняться
+        'schedule': 20,  # период запуска
+        'args': (5,),  # аргументы для выполняемой задачи
+    },
+}
