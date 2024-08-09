@@ -18,3 +18,10 @@ app.conf.beat_schedule = {
         'args': (5,),  # аргументы для выполняемой задачи
     },
 }
+
+"""
+запуск периодических задач на Windows в разных окнах терминала:
+$ celery -A mcdonalds worker -l INFO --pool=solo
+и
+$ celery -A mcdonalds beat -l INFO
+"""
