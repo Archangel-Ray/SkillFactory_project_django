@@ -57,6 +57,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+
+    # приложения для кеширования всего сайта
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'Training_Views.urls'
@@ -85,6 +90,7 @@ CACHES = {
         'LOCATION': os.path.join(BASE_DIR, 'cache_files'),
         # Указываем, куда будем сохранять кэшируемые файлы!
         # Не забываем создать папку cache_files внутри папки с manage.py!
+        'TIMEOUT': 60,  # добавляем стандартное время ожидания в минуту (по умолчанию это 5 минут — 300 секунд)
     }
 }
 
