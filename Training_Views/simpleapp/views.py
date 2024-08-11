@@ -4,8 +4,8 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from simpleapp.filters import ProductFilter
-from simpleapp.forms import ProductForm
+from .filters import ProductFilter
+from .forms import ProductForm
 from .models import Product
 
 

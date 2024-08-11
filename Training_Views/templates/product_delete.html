@@ -3,6 +3,7 @@
 {% block title %}УДАЛЕНИЕ{% endblock title %}
 
 {% block content %}
+<article><h2 class="mark">{% now "Y-m-d H:i" %}</h2></article>
 <h1>Удаление товара</h1>
 <hr>
 <form action="" method="post">
@@ -10,4 +11,5 @@
     <p>Удаляем "{{ object.name }}"?</p>
     <input type="submit" value="Удалить"/>
 </form>
+<a href="{% url 'product_detail' object.id %}"><button>Отменить</button></a>
 {% endblock content %}
