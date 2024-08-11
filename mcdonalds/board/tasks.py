@@ -18,7 +18,7 @@ def clear_old():
     """
     Очистка от старых заказов
     """
-    old_orders = Order.objects.all().exclude(time_in__gt=datetime.now(timezone.utc) - timedelta(minutes=5))
+    old_orders = Order.objects.all().exclude(time_in__gt=datetime.now() - timedelta(minutes=5))
     old_orders.delete()
 
 
