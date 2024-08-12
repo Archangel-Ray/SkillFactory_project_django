@@ -1,5 +1,4 @@
 from django.urls import path
-from django.views.decorators.cache import cache_page
 
 # Импортируем созданное нами представление
 from .views import ProductsList, ProductDetail, ProductCreate, ProductUpdate, ProductDelete
