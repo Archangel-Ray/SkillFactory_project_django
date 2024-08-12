@@ -15,7 +15,7 @@ urlpatterns = [
     # pk — это первичный ключ товара, который будет выводиться у нас в шаблон
     # int — указывает на то, что принимаются только целочисленные значения
     # добавим кэширование на детали товара. Раз в 10 минут товар будет записываться в кэш для экономии ресурсов.
-    path('<int:pk>/', cache_page(60*10)(ProductDetail.as_view()), name='product_detail'),
+    path('<int:pk>/', ProductDetail.as_view(), name='product_detail'),
     # ссылка на представление редактирования продукта
     path('create/', ProductCreate.as_view(), name='product_create'),
     path('<int:pk>/update/', ProductUpdate.as_view(), name='product_update'),
