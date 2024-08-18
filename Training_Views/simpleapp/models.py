@@ -24,6 +24,11 @@ class Product(models.Model):
         validators=[MinValueValidator(0.0)],
     )
 
+    # допишем свойство, которое будет отображать, есть ли товар на складе
+    @property
+    def on_stock(self):
+        return self.quantity > 0
+
     def __str__(self):
         return f'{self.name.title()}: {self.description[:20]}'
 
