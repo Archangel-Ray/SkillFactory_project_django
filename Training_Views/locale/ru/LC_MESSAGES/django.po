@@ -26,7 +26,7 @@ msgstr ""
 
 #: .\simpleapp\models.py:48
 msgid "category name"
-msgstr ""
+msgstr "название категории"
 
 #: .\simpleapp\views.py:58
 msgid "The promotion will last for a few more days!"
