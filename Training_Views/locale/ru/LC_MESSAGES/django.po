@@ -25,4 +25,4 @@ msgstr ""
 
 #: .\simpleapp\views.py:58
 msgid "The promotion will last for a few more days!"
-msgstr ""
+msgstr "Акция продлится еще несколько дней!"
