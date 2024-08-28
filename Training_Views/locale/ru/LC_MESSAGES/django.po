@@ -27,7 +27,7 @@ msgstr ""
 #: .\simpleapp\models.py:23
 msgctxt "auxiliary line"
 msgid "field name extension"
-msgstr ""
+msgstr "категория продукта"
 
 #: .\simpleapp\models.py:49
 msgid "category name"
