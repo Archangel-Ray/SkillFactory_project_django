@@ -2,6 +2,7 @@ from django.core.cache import cache
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
+from django.utils.translation import gettext
 
 
 # Товар для нашей витрины
@@ -44,7 +45,7 @@ class Product(models.Model):
 # Категория, к которой будет привязываться товар
 class Category(models.Model):
     # названия категорий тоже не должны повторяться
-    name = models.CharField(max_length=100, unique=True, help_text='category name')
+    name = models.CharField(max_length=100, unique=True, help_text=gettext('category name'))
 
     def __str__(self):
         return self.name.title()
