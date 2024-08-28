@@ -2,7 +2,7 @@ from django.core.cache import cache
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.urls import reverse
-from django.utils.translation import gettext
+from django.utils.translation import gettext, pgettext_lazy
 
 
 # Товар для нашей витрины
@@ -20,7 +20,7 @@ class Product(models.Model):
         to='Category',
         on_delete=models.CASCADE,
         related_name='products',  # все продукты в категории будут доступны через поле products
-        verbose_name='расширяющее название поля'
+        verbose_name=pgettext_lazy('расширяющее название поля')
     )
     price = models.FloatField(
         validators=[MinValueValidator(0.0)],
