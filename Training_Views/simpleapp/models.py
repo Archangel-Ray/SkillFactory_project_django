@@ -44,7 +44,7 @@ class Product(models.Model):
 # Категория, к которой будет привязываться товар
 class Category(models.Model):
     # названия категорий тоже не должны повторяться
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100, unique=True, help_text='category name')
 
     def __str__(self):
         return self.name.title()
