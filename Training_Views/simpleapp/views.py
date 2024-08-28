@@ -3,6 +3,7 @@
 # что в этом представлении мы будем выводить список объектов из БД
 from django.core.cache import cache
 from django.urls import reverse_lazy
+from django.utils.translation import gettext
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 from .filters import ProductFilter
@@ -53,6 +54,8 @@ class ProductsList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # для демонстрации локализации добавляю строчку в контекст
+        context['string'] = gettext('The promotion will last for a few more days!')
         # Добавляем в контекст объект фильтрации.
         context['filterset'] = self.filterset
         return context
