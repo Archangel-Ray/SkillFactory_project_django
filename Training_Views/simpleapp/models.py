@@ -20,6 +20,7 @@ class Product(models.Model):
         to='Category',
         on_delete=models.CASCADE,
         related_name='products',  # все продукты в категории будут доступны через поле products
+        verbose_name='расширяющее название поля'
     )
     price = models.FloatField(
         validators=[MinValueValidator(0.0)],
