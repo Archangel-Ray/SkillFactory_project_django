@@ -55,7 +55,7 @@ class ProductsList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # для демонстрации локализации добавляю строчку в контекст
-        context['string'] = gettext('The promotion will last for a few more days!')
+        context['string'] = gettext('This text will be translated from English')
         # Добавляем в контекст объект фильтрации.
         context['filterset'] = self.filterset
         return context
