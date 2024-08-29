@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-29 09:22+0300\n"
+"POT-Creation-Date: 2024-08-29 09:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,6 +36,10 @@ msgstr "название категории"
 #: .\simpleapp\views.py:58
 msgid "This text will be translated from English"
 msgstr "Этот текст был переведен с английского"
+
+#: .\templates\products.html:18
+msgid "List of all products"
+msgstr "Список всех продуктов"
 
 #~ msgid "The promotion will last for a few more days!"
 #~ msgstr "Акция продлится еще несколько дней!"
