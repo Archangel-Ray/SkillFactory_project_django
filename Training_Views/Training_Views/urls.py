@@ -18,6 +18,7 @@ from django.urls import path, include
 from .views import main
 
 urlpatterns = [
+    path('i18n/', include('django.conf.urls.i18n')),  # подключаем встроенные пакеты для работы с локализацией
     path('admin/', admin.site.urls),
     path('pages/', include('django.contrib.flatpages.urls')),
     path('', main),
