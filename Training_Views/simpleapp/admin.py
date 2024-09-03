@@ -31,6 +31,6 @@ class CategoryAdmin(TranslationAdmin):
     model = Category
 
 
-admin.site.register(Category)
+admin.site.register(Category, CategoryAdmin)
 admin.site.register(Product, ProductAdmin)
 # admin.site.unregister(Product) # разрегистрируем наши товары
