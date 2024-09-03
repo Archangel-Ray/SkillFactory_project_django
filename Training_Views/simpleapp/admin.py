@@ -17,7 +17,8 @@ nullfy_quantity.short_description = 'Обнулить товары'
 
 
 # создаём новый класс для представления товаров в админке
-class ProductAdmin(admin.ModelAdmin, TranslationAdmin):
+class ProductAdmin(TranslationAdmin, admin.ModelAdmin):
+    model = Product
     # list_display — это список или кортеж со всеми полями, которые вы хотите видеть в таблице с товарами
     list_display = ('name', 'price', 'on_stock', 'quantity')  # оставляем только имя и цену товара
     list_filter = ('price', 'quantity', 'name')  # добавляем примитивные фильтры в нашу админку
