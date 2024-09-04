@@ -66,6 +66,8 @@ MIDDLEWARE = [
     # 'django.middleware.cache.UpdateCacheMiddleware',
     # 'django.middleware.common.CommonMiddleware',
     # 'django.middleware.cache.FetchFromCacheMiddleware',
+
+    'simpleapp.middlewares.TimezoneMiddleware',  # установка часового пояса для текущего сеанса
 ]
 
 ROOT_URLCONF = 'Training_Views.urls'
