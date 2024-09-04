@@ -1,8 +1,10 @@
 # from datetime import datetime
 # Импортируем класс, который говорит нам о том,
 # что в этом представлении мы будем выводить список объектов из БД
+import pytz
 from django.core.cache import cache
 from django.urls import reverse_lazy
+from django.utils import timezone
 from django.utils.translation import gettext
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -56,6 +58,10 @@ class ProductsList(ListView):
         context = super().get_context_data(**kwargs)
         # для демонстрации локализации добавляю строчку в контекст
         context['string'] = gettext('This text will be translated from English')
+        # текущий часовой пояс
+        context['current_time'] = timezone.now()
+        # все доступные часовые пояса
+        context['timezones'] = pytz.common_timezones
         # Добавляем в контекст объект фильтрации.
         context['filterset'] = self.filterset
         return context
