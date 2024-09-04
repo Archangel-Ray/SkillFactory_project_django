@@ -3,6 +3,7 @@
 # что в этом представлении мы будем выводить список объектов из БД
 import pytz
 from django.core.cache import cache
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.utils.translation import gettext
@@ -65,6 +66,12 @@ class ProductsList(ListView):
         # Добавляем в контекст объект фильтрации.
         context['filterset'] = self.filterset
         return context
+
+    # по пост-запросу будем добавлять в сессию часовой пояс,
+    # который и будет обрабатываться написанным нами ранее middleware
+    def post(self, request):
+        request.session['django_timezone'] = request.POST['timezone']
+        return redirect('product_list')
 
 
 class ProductDetail(DetailView):
