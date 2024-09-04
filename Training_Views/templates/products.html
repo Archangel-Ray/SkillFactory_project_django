@@ -57,11 +57,21 @@
 <hr>
 
 <!-- А вот так мы используем наш тег-->
-<p>отображение даты с помощью тега</p>
-<h3>{% current_time '%Y %b %d %A' %}</h3>
 <p>отображение даты с помощью тега: {% current_time '%Y %b %d %A' %}</p>
 
+<p>выбор часового пояса и отображение текущей даты и времени в выбранном часовом поясе</p>
 {% get_current_timezone as TIME_ZONE %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <label for="timezone">Time zone:</label>
+    <select name="timezone">
+        {% for tz in timezones %}
+        <option value="{{ tz }}" {% if tz == TIME_ZONE %} selected{% endif %}>{{ tz }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Set">
+</form>
+
 <p>Выбранный часовой пояс: {{ TIME_ZONE }}</p>
 <h2>{{ current_time|timezone:TIME_ZONE }}</h2> <!-- Отображаем время в выбранном часовом поясе  -->
 
