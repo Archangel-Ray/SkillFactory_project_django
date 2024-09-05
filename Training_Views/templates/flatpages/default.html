@@ -8,8 +8,9 @@
     <title>{% block title %}Товары на любой вкус{% endblock title %}</title>
 
     {% load static %}
-    <!-- Core theme CSS (includes Bootstrap)-->
+    <!-- CSS основной темы (включая Bootstrap)-->
     <link href="{% static 'css/styles.css' %}" rel="stylesheet"/>
+    {% block style_background_color %}{% endblock %}
 </head>
 <body>
 <!-- Responsive navbar-->
