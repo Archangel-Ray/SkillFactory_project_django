@@ -60,7 +60,7 @@ class ProductsList(ListView):
         # для демонстрации локализации добавляю строчку в контекст
         context['string'] = gettext('This text will be translated from English')
         # текущий часовой пояс
-        context['current_time'] = timezone.now()
+        context['current_time'] = timezone.localtime(timezone.now())
         # все доступные часовые пояса
         context['timezones'] = pytz.common_timezones
         # Добавляем в контекст объект фильтрации.
