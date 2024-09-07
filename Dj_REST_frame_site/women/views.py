@@ -1,3 +1,10 @@
 from django.shortcuts import render
+from rest_framework import generics
 
-# Create your views here.
+from .models import Women
+from .serializers import WomenSerializer
+
+
+class WomenARIView(generics.ListAPIView):
+    queryset = Women.objects.all()  # считывание всех данных из модели
+    serializer_class = WomenSerializer  # назначение сериализатора
