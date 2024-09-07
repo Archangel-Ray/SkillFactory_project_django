@@ -5,6 +5,6 @@ from .models import Women
 from .serializers import WomenSerializer
 
 
-class WomenARIView(generics.ListAPIView):
+class WomenAPIView(generics.ListAPIView):
     queryset = Women.objects.all()  # считывание всех данных из модели
     serializer_class = WomenSerializer  # назначение сериализатора
