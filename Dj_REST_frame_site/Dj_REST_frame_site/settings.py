@@ -42,6 +42,10 @@ INSTALLED_APPS = [
 
     'women.apps.WomenConfig',
 ]
+"""
+плейлист уроков по REST Framework от Сергея Балакирева
+https://rutube.ru/plst/536685/
+"""
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
