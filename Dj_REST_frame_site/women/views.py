@@ -23,6 +23,10 @@ class WomenAPIView(APIView):  # наследуемся от базового к�
 
     # обработчик POST запросов
     def post(self, request):
+        # проверка полученных данных
+        serializer = WomenSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
         new_post = Women.objects.create(  # создаёт новую запись в базе и сохраняет в переменную
             # в соответствующие поля модели заносим данные полученные из запроса
             title=request.data['title'],
