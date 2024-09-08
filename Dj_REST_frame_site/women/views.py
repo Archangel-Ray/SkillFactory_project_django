@@ -14,7 +14,8 @@ from .serializers import WomenSerializer
 class WomenAPIView(APIView):  # наследуемся от базового класса
     # обработчик GET запросов
     def get(self, request):
-        return Response({'title': 'Анджелина Джоли'})
+        list_of_all_data = Women.objects.all().values()
+        return Response({'posts': list(list_of_all_data)})
 
     # обработчик POST запросов
     def post(self, request):
