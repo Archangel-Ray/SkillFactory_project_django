@@ -16,6 +16,10 @@ class WomenAPIView(APIView):  # наследуемся от базового к�
     def get(self, request):
         return Response({'title': 'Анджелина Джоли'})
 
+    # обработчик POST запросов
+    def post(self, request):
+        return Response({'title': 'Дженнифер Лоуренс'})
+
 
 # class WomenAPIView(generics.ListAPIView):
 #     queryset = Women.objects.all()  # считывание всех данных из модели
