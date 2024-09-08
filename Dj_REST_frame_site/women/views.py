@@ -15,8 +15,11 @@ from .serializers import WomenSerializer
 class WomenAPIView(APIView):  # наследуемся от базового класса
     # обработчик GET запросов
     def get(self, request):
-        list_of_all_data = Women.objects.all().values()
-        return Response({'posts': list(list_of_all_data)})
+        query_of_all_data = Women.objects.all()  # сохраняем Queryset
+        # в сериализатор отправляется Queryset и указывается,
+        # что будет преобразовываться несколько записей
+        # возвращается коллекция из сериализатора
+        return Response({'posts': WomenSerializer(query_of_all_data, many=True).data})
 
     # обработчик POST запросов
     def post(self, request):
