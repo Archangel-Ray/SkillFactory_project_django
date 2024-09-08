@@ -1,3 +1,7 @@
+"""
+документация по классам представлений
+https://www.django-rest-framework.org/api-guide/generic-views/
+"""
 from django.shortcuts import render
 from rest_framework import generics
 
