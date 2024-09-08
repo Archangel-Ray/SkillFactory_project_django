@@ -2,6 +2,7 @@
 документация по классам представлений
 https://www.django-rest-framework.org/api-guide/generic-views/
 """
+from django.forms import model_to_dict
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework.response import Response
@@ -19,7 +20,15 @@ class WomenAPIView(APIView):  # наследуемся от базового к�
 
     # обработчик POST запросов
     def post(self, request):
-        return Response({'title': 'Дженнифер Лоуренс'})
+        new_post = Women.objects.create(  # создаёт новую запись в базе и сохраняет в переменную
+            # в соответствующие поля модели заносим данные полученные из запроса
+            title=request.data['title'],
+            content=request.data['content'],
+            cat_id=request.data['cat_id']
+        )
+        # возвращает сохранённую переменную преобразованную в словарь
+        # в которой сохранена только что созданная запись модели
+        return Response({'post': model_to_dict(new_post)})
 
 
 # class WomenAPIView(generics.ListAPIView):
