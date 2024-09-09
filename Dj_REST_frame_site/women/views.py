@@ -55,6 +55,23 @@ class WomenAPIView(APIView):  # наследуемся от базового к�
         # возвращаются данные из объекта
         return Response({'post': serializer.data})
 
+    # удаление записи
+    def delete(self, request, *args, **kwargs):
+        # получает ключ записи
+        pk = kwargs.get("pk", None)
+        # проверяет ключ
+        if not pk:
+            return Response({"error": "Метод DELETE не определён"})
+
+        # пробует удалить запись по ключу
+        try:
+            Women.objects.get(pk=pk).delete()
+        except:
+            return Response({"error": "Объект не найден"})
+
+        # возвращаются данные которые были удалены
+        return Response({'post': "удалена строка " + str(pk)})
+
 # class WomenAPIView(generics.ListAPIView):
 #     queryset = Women.objects.all()  # считывание всех данных из модели
 #     serializer_class = WomenSerializer  # назначение сериализатора
