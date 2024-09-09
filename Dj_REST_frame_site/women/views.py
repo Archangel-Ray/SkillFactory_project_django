@@ -33,6 +33,27 @@ class WomenAPIView(APIView):  # наследуемся от базового к�
         # возвращаются данные из объекта
         return Response({'post': serializer.data})
 
+    def put(self, request, *args, **kwargs):
+        # получает ключ записи
+        pk = kwargs.get("pk", None)
+        # проверяет ключ
+        if not pk:
+            return Response({"error": "Метод PUT не определён"})
+
+        # пробует получить запись по ключу
+        try:
+            instance = Women.objects.get(pk=pk)
+        except:
+            return Response({"error": "Объект не найден"})
+
+        # если запись получена передаём в сериализатор данные из запроса и эту запись
+        serializer = WomenSerializer(data=request.data, instance=instance)
+        # проверка полученных данных
+        serializer.is_valid(raise_exception=True)
+        # метод сохранения запускает в сериализаторе метод обновления записи в базе
+        serializer.save()
+        # возвращаются данные из объекта
+        return Response({'post': serializer.data})
 
 # class WomenAPIView(generics.ListAPIView):
 #     queryset = Women.objects.all()  # считывание всех данных из модели
