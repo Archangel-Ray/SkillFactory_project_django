@@ -11,3 +11,7 @@ class WomenSerializer(serializers.Serializer):
     time_update = serializers.DateTimeField(read_only=True)
     is_published = serializers.BooleanField(default=True)
     cat_id = serializers.IntegerField()
+
+    # создание записи в модели
+    def create(self, validated_data):
+        return Women.objects.create(**validated_data)

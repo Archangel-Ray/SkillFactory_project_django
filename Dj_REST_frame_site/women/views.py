@@ -28,16 +28,10 @@ class WomenAPIView(APIView):  # наследуемся от базового к�
         serializer = WomenSerializer(data=request.data)
         # проверка полученных данных
         serializer.is_valid(raise_exception=True)
-
-        new_post = Women.objects.create(  # создаёт новую запись в базе и сохраняет в переменную
-            # в соответствующие поля модели заносим данные полученные из запроса
-            title=request.data['title'],
-            content=request.data['content'],
-            cat_id=request.data['cat_id']
-        )
-        # сохранённая переменная отправляется в сериализатор,
-        # возвращается коллекция из него
-        return Response({'post': WomenSerializer(new_post).data})
+        # метод сохранения запускает в сериализаторе метод создания записи в базе
+        serializer.save()
+        # возвращаются данные из объекта
+        return Response({'post': serializer.data})
 
 
 # class WomenAPIView(generics.ListAPIView):
