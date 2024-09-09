@@ -12,6 +12,20 @@ class WomenSerializer(serializers.Serializer):
     is_published = serializers.BooleanField(default=True)
     cat_id = serializers.IntegerField()
 
-    # создание записи в модели
+    # если передаются только данные, то запускается создание записи
     def create(self, validated_data):
         return Women.objects.create(**validated_data)
+
+    # если с данными передаётся ссылка на строку, то запускается изменение записи
+    # прописываются все поля, которые могут меняться
+    def update(self, instance, validated_data):
+        # instance - ссылка на объект модели "Women"
+        # validated_data - данные новой записи
+        instance.title = validated_data.get("title", instance.title)
+        instance.content = validated_data.get("content", instance.content)
+        instance.time_update = validated_data.get("time_update", instance.time_update)
+        instance.is_published = validated_data.get("is_published", instance.is_published)
+        instance.cat_id = validated_data.get("cat_id", instance.cat_id)
+        # сохранение изменённой записи
+        instance.save()
+        return instance
