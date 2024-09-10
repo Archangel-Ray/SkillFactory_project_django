@@ -18,7 +18,14 @@ class WomenAPIList(generics.ListCreateAPIView):
     serializer_class = WomenSerializer
 
 
+# заменяет запись
 class WomenAPIUpdate(generics.UpdateAPIView):
+    queryset = Women.objects.all()
+    serializer_class = WomenSerializer
+
+
+# класс всех запросов
+class WomenAPIDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
 
