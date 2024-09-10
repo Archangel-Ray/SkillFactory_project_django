@@ -18,6 +18,11 @@ class WomenAPIList(generics.ListCreateAPIView):
     serializer_class = WomenSerializer
 
 
+class WomenAPIUpdate(generics.UpdateAPIView):
+    queryset = Women.objects.all()
+    serializer_class = WomenSerializer
+
+
 # этот класс не подключён
 # оставлен на память: как прописывать представления самостоятельно
 class WomenAPIView(APIView):  # наследуемся от базового класса
