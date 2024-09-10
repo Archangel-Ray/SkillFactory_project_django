@@ -12,6 +12,14 @@ from .models import Women
 from .serializers import WomenSerializer
 
 
+# возвращает список записей по GET запросу и отправляет POST запрос
+class WomenAPIList(generics.ListCreateAPIView):
+    queryset = Women.objects.all()
+    serializer_class = WomenSerializer
+
+
+# этот класс не подключён
+# оставлен на память: как прописывать представления самостоятельно
 class WomenAPIView(APIView):  # наследуемся от базового класса
     # обработчик GET запросов
     def get(self, request):
@@ -72,6 +80,9 @@ class WomenAPIView(APIView):  # наследуемся от базового к�
         # возвращаются данные которые были удалены
         return Response({'post': "удалена строка " + str(pk)})
 
-# class WomenAPIView(generics.ListAPIView):
-#     queryset = Women.objects.all()  # считывание всех данных из модели
-#     serializer_class = WomenSerializer  # назначение сериализатора
+
+# класс не подключён
+# оставлен на память: отображение списка модели
+class WomenAPIViewList(generics.ListAPIView):
+    queryset = Women.objects.all()  # считывание всех данных из модели
+    serializer_class = WomenSerializer  # назначение сериализатора

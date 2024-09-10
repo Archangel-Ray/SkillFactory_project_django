@@ -8,6 +8,8 @@ class WomenSerializer(serializers.ModelSerializer):
         model = Women
         fields = "__all__"
 
+# на память: как прописывать сериализатор самостоятельно
+#
 # class WomenSerializer(serializers.Serializer):
 #     # прописываем все поля модели которая будет сериализоваться
 #     title = serializers.CharField(max_length=255)
