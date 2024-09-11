@@ -22,6 +22,9 @@ from women.views import *
 
 # создаётся объект, который будет формировать текущие пути относительно представления
 router = routers.SimpleRouter()
+# регистрация представления в роутере.
+# необходимо указать префикс и класс представления
+router.register(r'women', WomenViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
