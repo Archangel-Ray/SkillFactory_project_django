@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from rest_framework import routers  # генератор путей
 
 from women.views import *
@@ -28,9 +28,6 @@ router.register(r'women', WomenViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # для этого представления нужно передать тип запроса с указанием метода.
-    # то есть будут отрабатываться только указанные виды запросов
-    # методы: https://www.django-rest-framework.org/api-guide/viewsets/#viewset-actions
-    path('api/v1/womenlist', WomenViewSet.as_view({'get': 'list'})),
-    path('api/v1/womenlist/<int:pk>', WomenViewSet.as_view({'put': 'update'})),
+    # подключение всех путей роутера
+    path('api/v1', include(router.urls)),
 ]
