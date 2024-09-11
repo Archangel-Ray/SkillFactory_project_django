@@ -23,9 +23,12 @@ from women.views import *
 # создаётся объект, который будет формировать текущие пути относительно представления
 # документация https://www.django-rest-framework.org/api-guide/routers/
 router = routers.DefaultRouter()  # возвращает пути если использовать без указания префикса
-# регистрация представления в роутере.
-# необходимо указать префикс и класс представления
-router.register(r'women', WomenViewSet)
+# регистрация представления в роутере
+router.register(
+    r'women',  # префикс маршрута
+    WomenViewSet,  # класс представления
+    basename='женщины',  # префикс для имени маршрута
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
