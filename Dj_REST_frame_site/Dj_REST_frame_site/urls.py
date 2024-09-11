@@ -29,5 +29,5 @@ router.register(r'women', WomenViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     # подключение всех путей роутера
-    path('api/v1', include(router.urls)),
+    path('api/v1/', include(router.urls)),
 ]
