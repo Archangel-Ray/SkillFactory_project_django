@@ -2,9 +2,7 @@
 документация по классам представлений
 https://www.django-rest-framework.org/api-guide/generic-views/
 """
-from django.forms import model_to_dict
-from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -12,18 +10,31 @@ from .models import Women
 from .serializers import WomenSerializer
 
 
+# универсальный класс. в нём прописаны все виды запросов
+class WomenViewSet(viewsets.ModelViewSet):
+    """
+    описание универсальных классов:
+    https://www.django-rest-framework.org/api-guide/viewsets/#viewsets
+    """
+    queryset = Women.objects.all()
+    serializer_class = WomenSerializer
+
+
+# этот класс не подключён. оставлен на память:
 # возвращает список записей по GET запросу и отправляет POST запрос
 class WomenAPIList(generics.ListCreateAPIView):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
 
 
+# этот класс не подключён. оставлен на память:
 # заменяет запись
 class WomenAPIUpdate(generics.UpdateAPIView):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
 
 
+# этот класс не подключён. оставлен на память:
 # класс всех запросов
 class WomenAPIDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Women.objects.all()
