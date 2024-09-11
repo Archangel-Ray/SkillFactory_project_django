@@ -22,6 +22,7 @@ from women.views import *
 
 # создаётся объект, который будет формировать текущие пути относительно представления
 # документация https://www.django-rest-framework.org/api-guide/routers/
+# собственные https://www.django-rest-framework.org/api-guide/routers/#custom-routers
 router = routers.DefaultRouter()  # возвращает пути если использовать без указания префикса
 # регистрация представления в роутере
 router.register(
