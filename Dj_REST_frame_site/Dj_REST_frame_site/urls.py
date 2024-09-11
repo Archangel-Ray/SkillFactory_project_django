@@ -22,7 +22,7 @@ from women.views import *
 
 # создаётся объект, который будет формировать текущие пути относительно представления
 # документация https://www.django-rest-framework.org/api-guide/routers/
-router = routers.SimpleRouter()
+router = routers.DefaultRouter()  # возвращает пути если использовать без указания префикса
 # регистрация представления в роутере.
 # необходимо указать префикс и класс представления
 router.register(r'women', WomenViewSet)
