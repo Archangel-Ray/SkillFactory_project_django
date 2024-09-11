@@ -11,7 +11,7 @@ from .serializers import WomenSerializer
 
 
 # универсальный класс. в нём прописаны все виды запросов
-class WomenViewSet(viewsets.ModelViewSet):
+class WomenViewSet(viewsets.ReadOnlyModelViewSet):
     """
     описание универсальных классов:
     https://www.django-rest-framework.org/api-guide/viewsets/#viewsets
