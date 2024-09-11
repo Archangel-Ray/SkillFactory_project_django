@@ -29,7 +29,10 @@ class WomenViewSet(mixins.CreateModelMixin,  # добавление записи
 
     # в этом методе можно прописывать логику если она необходима
     def get_queryset(self):
-        return Women.objects.all()[:10]
+        pk = self.kwargs.get("pk")  # если ключ был передан, то необходима конкретная запись
+        if not pk:
+            return Women.objects.all()[:10]
+        return Women.objects.filter(pk=pk)  # возвращаться должен обязательно список
 
     # добавление пути в маршрутизатор
     @action(  # декоратор для создания нового маршрута
