@@ -24,8 +24,12 @@ class WomenViewSet(mixins.CreateModelMixin,  # добавление записи
     описание универсальных классов:
     https://www.django-rest-framework.org/api-guide/viewsets/#viewsets
     """
-    queryset = Women.objects.all()
+    # queryset = Women.objects.all()
     serializer_class = WomenSerializer
+
+    # в этом методе можно прописывать логику если она необходима
+    def get_queryset(self):
+        return Women.objects.all()[:10]
 
     # добавление пути в маршрутизатор
     @action(  # декоратор для создания нового маршрута
