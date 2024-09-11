@@ -2,16 +2,23 @@
 документация по классам представлений
 https://www.django-rest-framework.org/api-guide/generic-views/
 """
-from rest_framework import generics, viewsets
+from rest_framework import generics, mixins
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.viewsets import GenericViewSet
 
 from .models import Women
 from .serializers import WomenSerializer
 
 
-# универсальный класс. в нём прописаны все виды запросов
-class WomenViewSet(viewsets.ReadOnlyModelViewSet):
+# универсальный класс. виды запросов по отдельности.
+# можно выбрать конкретный функционал класса
+class WomenViewSet(mixins.CreateModelMixin,  # добавление записи
+                   mixins.RetrieveModelMixin,  # возвращает запись
+                   mixins.UpdateModelMixin,  # меняет запись
+                   mixins.DestroyModelMixin,  # удаляет запись
+                   mixins.ListModelMixin,  # возвращает список записей
+                   GenericViewSet):  # отображение функционала
     """
     описание универсальных классов:
     https://www.django-rest-framework.org/api-guide/viewsets/#viewsets
