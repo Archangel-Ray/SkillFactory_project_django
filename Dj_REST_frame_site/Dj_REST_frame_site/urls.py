@@ -21,6 +21,7 @@ from rest_framework import routers  # генератор путей
 from women.views import *
 
 # создаётся объект, который будет формировать текущие пути относительно представления
+# документация https://www.django-rest-framework.org/api-guide/routers/
 router = routers.SimpleRouter()
 # регистрация представления в роутере.
 # необходимо указать префикс и класс представления
