@@ -3,11 +3,12 @@
 https://www.django-rest-framework.org/api-guide/generic-views/
 """
 from rest_framework import generics, mixins
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 
-from .models import Women
+from .models import Women, Category
 from .serializers import WomenSerializer
 
 
@@ -25,6 +26,15 @@ class WomenViewSet(mixins.CreateModelMixin,  # добавление записи
     """
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
+
+    # добавление пути в маршрутизатор
+    @action(  # декоратор для создания нового маршрута
+        methods=['get'],  # список методов
+        detail=False  # отображение одной строки базы - True. если False, то все
+    )
+    def category(self, request):  # имя префикса пути берётся по названию метода
+        cats = Category.objects.all()
+        return Response({'cats': [c.name for c in cats]})
 
 
 # этот класс не подключён. оставлен на память:
