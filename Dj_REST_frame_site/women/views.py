@@ -32,9 +32,15 @@ class WomenViewSet(mixins.CreateModelMixin,  # добавление записи
         methods=['get'],  # список методов
         detail=False  # отображение одной строки базы - True. если False, то все
     )
-    def category(self, request):  # имя префикса пути берётся по названию метода
+    def categories(self, request):  # имя префикса пути берётся по названию метода
         cats = Category.objects.all()
         return Response({'cats': [c.name for c in cats]})
+
+    # получение конкретной записи
+    @action(methods=['get'], detail=True)
+    def category(self, request, pk):
+        cat = Category.objects.get(pk=pk)
+        return Response({'cat': cat.name})
 
 
 # этот класс не подключён. оставлен на память:
