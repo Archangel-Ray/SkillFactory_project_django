@@ -12,6 +12,7 @@ from .models import Women, Category
 from .serializers import WomenSerializer
 
 
+# не подключён. оставлен на память:
 # универсальный класс. виды запросов по отдельности.
 # можно выбрать конкретный функционал класса
 class WomenViewSet(mixins.CreateModelMixin,  # добавление записи
@@ -50,16 +51,23 @@ class WomenViewSet(mixins.CreateModelMixin,  # добавление записи
         return Response({'cat': cat.name})
 
 
-# этот класс не подключён. оставлен на память:
+# вернулись к этому классу для демонстрации авторизации:
 # возвращает список записей по GET запросу и отправляет POST запрос
 class WomenAPIList(generics.ListCreateAPIView):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
 
 
-# этот класс не подключён. оставлен на память:
+# вернулись к этому классу для демонстрации авторизации:
 # заменяет запись
 class WomenAPIUpdate(generics.UpdateAPIView):
+    queryset = Women.objects.all()
+    serializer_class = WomenSerializer
+
+
+# для демонстрации авторизации:
+# удаляет запись
+class WomenAPIDestroy(generics.RetrieveDestroyAPIView):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
 
