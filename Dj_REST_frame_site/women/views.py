@@ -5,7 +5,7 @@ https://www.django-rest-framework.org/api-guide/generic-views/
 from rest_framework import generics, mixins
 from rest_framework.decorators import action
 # документация по классам ограничений: https://www.django-rest-framework.org/api-guide/permissions/
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
@@ -73,6 +73,7 @@ class WomenAPIUpdate(generics.UpdateAPIView):
 class WomenAPIDestroy(generics.RetrieveDestroyAPIView):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
+    permission_classes = (IsAdminUser, )
 
 
 # этот класс не подключён. оставлен на память:
