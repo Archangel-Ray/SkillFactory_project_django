@@ -33,6 +33,9 @@ from women.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # подключение авторизации и аутентификации
+    # документация https://www.django-rest-framework.org/api-guide/authentication/
+    path('api/v1/drf-auth/', include('rest_framework.urls')),
     # подключение всех путей роутера
     # path('api/v1/', include(router.urls)),
     path('api/v1/women/', WomenAPIList.as_view()),
