@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+import rest_framework.permissions
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -132,6 +134,8 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',  # задаёт отображение в JSON формате
         'rest_framework.renderers.BrowsableAPIRenderer',  # браузерное отображение
     ],
-    # 'DEFAULT_PARSER_CLASSES': ['rest_framework.parsers.JSONParser']  # убирает форму браузера по умолчанию
-
+    # 'DEFAULT_PARSER_CLASSES': ['rest_framework.parsers.JSONParser'],  # убирает форму браузера по умолчанию
+    'DEFAULT_PERMISSION_CLASSES': [  # настройки ограничений по умолчанию
+        'rest_framework.permissions.IsAuthenticated',  # только для авторизованных пользователей
+    ],
 }
