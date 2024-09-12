@@ -4,6 +4,9 @@ from .models import Women
 
 
 class WomenSerializer(serializers.ModelSerializer):
+    # скрытое поле по умолчанию ставит текущего пользователя
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
+
     class Meta:
         model = Women
         fields = "__all__"
