@@ -58,6 +58,7 @@ class WomenViewSet(mixins.CreateModelMixin,  # добавление записи
 class WomenAPIList(generics.ListCreateAPIView):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly, )
 
 
 # вернулись к этому классу для демонстрации авторизации:
