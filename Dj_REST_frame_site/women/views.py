@@ -11,6 +11,7 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
 
 from .models import Women, Category
+from .permissions import IsAdminOrReadOnly
 from .serializers import WomenSerializer
 
 
@@ -73,7 +74,7 @@ class WomenAPIUpdate(generics.UpdateAPIView):
 class WomenAPIDestroy(generics.RetrieveDestroyAPIView):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
-    permission_classes = (IsAdminUser, )
+    permission_classes = (IsAdminOrReadOnly, )
 
 
 # этот класс не подключён. оставлен на память:
