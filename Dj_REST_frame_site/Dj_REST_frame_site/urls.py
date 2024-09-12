@@ -16,23 +16,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers  # генератор путей
+# from rest_framework import routers  # генератор путей
 
 from women.views import *
 
 # создаётся объект, который будет формировать текущие пути относительно представления
 # документация https://www.django-rest-framework.org/api-guide/routers/
 # собственные https://www.django-rest-framework.org/api-guide/routers/#custom-routers
-router = routers.DefaultRouter()  # возвращает пути если использовать без указания префикса
+# router = routers.DefaultRouter()  # возвращает пути если использовать без указания префикса
 # регистрация представления в роутере
-router.register(
-    r'women',  # префикс маршрута
-    WomenViewSet,  # класс представления
-    basename='женщины',  # префикс для имени маршрута. если в представлении нет queryset, то имя обязательно
-)
+# router.register(
+#     r'women',  # префикс маршрута
+#     WomenViewSet,  # класс представления
+#     basename='женщины',  # префикс для имени маршрута. если в представлении нет queryset, то имя обязательно
+# )
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # подключение всех путей роутера
-    path('api/v1/', include(router.urls)),
+    # path('api/v1/', include(router.urls)),
 ]
