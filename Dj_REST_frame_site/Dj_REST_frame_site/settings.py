@@ -128,6 +128,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 REST_FRAMEWORK = {
     # разбивка на страницы
+    # документация https://www.django-rest-framework.org/api-guide/pagination/
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 3,
     'DEFAULT_RENDERER_CLASSES': [
