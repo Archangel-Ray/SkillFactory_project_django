@@ -70,6 +70,7 @@ class WomenAPIList(generics.ListCreateAPIView):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
     permission_classes = (IsAuthenticatedOrReadOnly,)
+    pagination_class = WomenAPIListPagination
 
 
 # вернулись к этому классу для демонстрации авторизации:
