@@ -4,6 +4,8 @@ https://www.django-rest-framework.org/api-guide/generic-views/
 """
 from rest_framework import generics, mixins
 from rest_framework.decorators import action
+# настройка разбивки на страницы
+from rest_framework.pagination import PageNumberPagination
 # документация по классам ограничений: https://www.django-rest-framework.org/api-guide/permissions/
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
 from rest_framework.response import Response
@@ -54,12 +56,20 @@ class WomenViewSet(mixins.CreateModelMixin,  # добавление записи
         return Response({'cat': cat.name})
 
 
+# собственный класс разбивки на страницы
+# документация https://www.django-rest-framework.org/api-guide/pagination/#pagenumberpagination
+class WomenAPIListPagination(PageNumberPagination):
+    page_size = 2  # количество записей на странице
+    page_size_query_param = 'page_size'  # индивидуальное количество страниц. указывается после амперсанда в запросе
+    max_page_size = 100  # максимальное количество страниц индивидуальной настройки
+
+
 # вернулись к этому классу для демонстрации авторизации:
 # возвращает список записей по GET запросу и отправляет POST запрос
 class WomenAPIList(generics.ListCreateAPIView):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
-    permission_classes = (IsAuthenticatedOrReadOnly, )
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
 # вернулись к этому классу для демонстрации авторизации:
@@ -67,7 +77,7 @@ class WomenAPIList(generics.ListCreateAPIView):
 class WomenAPIUpdate(generics.RetrieveUpdateAPIView):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
-    permission_classes = (IsOwnerOrReadOnly, )
+    permission_classes = (IsOwnerOrReadOnly,)
 
 
 # для демонстрации авторизации:
@@ -75,7 +85,7 @@ class WomenAPIUpdate(generics.RetrieveUpdateAPIView):
 class WomenAPIDestroy(generics.RetrieveDestroyAPIView):
     queryset = Women.objects.all()
     serializer_class = WomenSerializer
-    permission_classes = (IsAdminOrReadOnly, )
+    permission_classes = (IsAdminOrReadOnly,)
 
 
 # этот класс не подключён. оставлен на память:
